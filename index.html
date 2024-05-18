@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Raleway:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="main.js"></script>
+    <title>Water Wave Animation</title>
+</head>
+<body>
+    <section>
+        <div id="bar">
+            <label for="setting" style="margin: 10px 10px 10px 20px;">setting</label>
+        </div>
+        <div id="setting-page">
+            <img src="images/setting.png" alt="setting" id="setting">
+                <form class="feature" >
+                    <label for="Capacity">Full Capacity:</label>
+                    <input id="full-capacity" type="number" name="Capacity" min="0" >
+                </form>
+                <form class="feature">
+                    <label for="units">Unit of meaturement:</label>
+                    <select id="units" >
+                        <option>test</option>
+                        <option>test2</option>
+                    </select>
+                </form>
+                <form class="feature" >
+                    <label for="Limit">Water Limit:</label>
+                    <input type="number" name="Limit" min="0"
+                    style="margin-left: 12px;">
+                </form>
+                <form class="feature" >
+                    <label for="Capacity">Manual or Auto:</label>
+                    <select id="Manual" >
+                        <option>Manual</option>
+                        <option>Auto</option>
+                    </select>
+                </form>
+                <button id="apply-button" style="margin-left: 210px;">Apply</button>
+        </div>
+        <div class="waterContainer">  
+            <div class="ruler">
+                <div class="rulerLine">
+                    <div class="line"></div>
+                    <p>60</p>
+                </div>
+                <div class="rulerLine">
+                    <div class="line"></div>
+                    <p>50</p>
+                </div>
+                <div class="rulerLine">
+                    <div class="line"></div>
+                    <p>40</p>
+                </div>
+                <div class="rulerLine">
+                    <div class="line"></div>
+                    <p>30</p>
+                </div>
+                <div class="rulerLine">
+                    <div class="line"></div>
+                    <p>20</p>
+                </div>
+                <div class="rulerLine">
+                    <div class="line"></div>
+                    <p>10</p>
+                </div>
+                <div class="rulerLine">
+                    <div class="line"></div>
+                    <p>0</p>
+                </div>
+
+            </div>
+            <label id="current-flow">1400</label> 
+            <div id="water-limit"></div> 
+        </div>
+            <label for="water-status" id="water-status">Normal</label>
+        <div id="control-panel">
+            <form class="feature">
+                <label for="current-flow" style="font-weight: 500;">Current Water Level:</label>
+                <label class="information">1400 mm</label>
+            </form>
+            <form class="feature">
+                <label for="remaining" style="font-weight: 500;">Remaining Capacity:</label>
+                <label class="information">200 mm</label>
+            </form>
+            <form class="feature">
+                <label for="percentage"style="font-weight: 500;">Percentage Used:</label>
+                <label class="information">80%</label>
+            </form>
+            <form class="feature">
+                <label for="threshold" style="font-weight: 500;">Safety Threshold:</label>
+                <label class="information">1500 mm</label>
+            </form>
+            <form class="feature">
+                <label for="dam-status" style="font-weight: 500;">Dam Gate Status:</label>
+                <label class="information">Open</label>
+            </form>
+            <form class="feature">
+                <label for="control-mechanism" style="font-weight: 500;">Control Mechanism:</label>
+                <label class="information">Automated</label>
+            </form>
+            
+        </div>
+    </section>
+</body>
+</html>
