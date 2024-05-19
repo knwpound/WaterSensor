@@ -8,8 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Raleway:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <script src="main.js"></script>
     <title>Water Wave Animation</title>
+    <script src="main.js"></script>
 </head>
 <body>
     <section>
@@ -25,8 +25,9 @@
                 <form class="feature">
                     <label for="units">Unit of meaturement:</label>
                     <select id="units" >
-                        <option>test</option>
-                        <option>test2</option>
+                        <option value="mm³">mm&sup3;</option>
+                        <option value="cm³">cm&sup3;</option>
+                        <option value="m³">m&sup3;</option>
                     </select>
                 </form>
                 <form class="feature" >
@@ -47,31 +48,31 @@
             <div class="ruler">
                 <div class="rulerLine">
                     <div class="line"></div>
-                    <p>60</p>
+                    <p id="line-1">70</p>
                 </div>
                 <div class="rulerLine">
                     <div class="line"></div>
-                    <p>50</p>
+                    <p id="line-2">60</p>
                 </div>
                 <div class="rulerLine">
                     <div class="line"></div>
-                    <p>40</p>
+                    <p id="line-3">50</p>
                 </div>
                 <div class="rulerLine">
                     <div class="line"></div>
-                    <p>30</p>
+                    <p id="line-4">40</p>
                 </div>
                 <div class="rulerLine">
                     <div class="line"></div>
-                    <p>20</p>
+                    <p id="line-5">30</p>
                 </div>
                 <div class="rulerLine">
                     <div class="line"></div>
-                    <p>10</p>
+                    <p id="line-6">20</p>
                 </div>
                 <div class="rulerLine">
                     <div class="line"></div>
-                    <p>0</p>
+                    <p id="line-7">10</p>
                 </div>
 
             </div>
@@ -79,33 +80,32 @@
             <div id="water-limit"></div> 
         </div>
             <label for="water-status" id="water-status">Normal</label>
-        <div id="control-panel">
-            <form class="feature">
-                <label for="current-flow" style="font-weight: 500;">Current Water Level:</label>
-                <label class="information">1400 mm</label>
-            </form>
-            <form class="feature">
-                <label for="remaining" style="font-weight: 500;">Remaining Capacity:</label>
-                <label class="information">200 mm</label>
-            </form>
-            <form class="feature">
-                <label for="percentage"style="font-weight: 500;">Percentage Used:</label>
-                <label class="information">80%</label>
-            </form>
-            <form class="feature">
-                <label for="threshold" style="font-weight: 500;">Safety Threshold:</label>
-                <label class="information">1500 mm</label>
-            </form>
-            <form class="feature">
-                <label for="dam-status" style="font-weight: 500;">Dam Gate Status:</label>
-                <label class="information">Open</label>
-            </form>
-            <form class="feature">
-                <label for="control-mechanism" style="font-weight: 500;">Control Mechanism:</label>
-                <label class="information">Automated</label>
-            </form>
-            
-        </div>
+            <div id="control-panel">
+                <form class="feature">
+                    <label for="current-flow" style="font-weight: 500;">Current Water Level:</label>
+                    <label id="current-flow-info" class="information">1400 mm</label>
+                </form>
+                <form class="feature">
+                    <label for="remaining" style="font-weight: 500;">Remaining Capacity:</label>
+                    <label id="remaining-capacity-info" class="information">200 mm</label>
+                </form>
+                <form class="feature">
+                    <label for="percentage" style="font-weight: 500;">Percentage Used:</label>
+                    <label id="percentage-used-info" class="information">80%</label>
+                </form>
+                <form class="feature">
+                    <label for="threshold" style="font-weight: 500;">Safety Threshold:</label>
+                    <label id="safety-threshold-info" class="information">1500 mm</label>
+                </form>
+                <form class="feature">
+                    <label for="dam-status" style="font-weight: 500;">Dam Gate Status:</label>
+                    <label id="dam-gate-status-info" class="information">Open</label>
+                </form>
+                <form class="feature">
+                    <label for="control-mechanism" style="font-weight: 500;">Control Mechanism:</label>
+                    <label id="control-mechanism-info" class="information">Automated</label>
+                </form>
+            </div>            
     </section>
 </body>
 </html>
