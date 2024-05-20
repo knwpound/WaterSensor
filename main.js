@@ -14,7 +14,6 @@ function handleApplyButtonClick() {
     var waterLimit = document.querySelector('input[name="Limit"]').value;
     var manualAuto = document.getElementById('Manual').value;
 
-    // Convert fullCapacity and waterLimit to numbers for validation
     fullCapacity = parseFloat(fullCapacity);
     waterLimit = parseFloat(waterLimit);
 
@@ -38,44 +37,74 @@ function handleApplyButtonClick() {
         console.log('Water Limit:', waterLimit);
         console.log('Manual or Auto:', manualAuto);
 
-        // Handle the values (e.g., send them to a server)
-
-        // Disable all inputs and selects after clicking the apply button
         document.getElementById('full-capacity').disabled = true;
         document.getElementById('units').disabled = true;
         document.querySelector('input[name="Limit"]').disabled = true;
         document.getElementById('Manual').disabled = true;
-        document.getElementById('apply-button').disabled = true; // Optionally disable the Apply button itself
+        document.getElementById('apply-button').disabled = true; 
 
-        updateControlPanel(0,fullCapacity,100,waterLimit,"Closed",manualAuto,unitMeasurement)
+        updateRulerLines();
+        updateControlPanel(0,fullCapacity,100,waterLimit,"Closed",manualAuto,unitMeasurement);
+        updateWaterLimitPosition(fullCapacity,waterLimit);
+
+        toggleSpinAnimation();
     }
 }
 
 function updateRulerLines() {
-    // Get the full capacity value
     const fullCapacity = parseInt(document.getElementById('full-capacity').value);
 
-    // Calculate the step size between each line
     const stepSize = fullCapacity / 7;
 
-    // Update the positions of the lines
     for (let i = 1; i <= 7; i++) {
         const line = document.getElementById(`line-${i}`);
         if (line) {
-            // Calculate the value to display on the line
             const value = Math.round(fullCapacity - (i - 1) * stepSize);
-            // Update the position and value of the line
             line.style.display = 'block';
             line.textContent = value;
         }
     }
 }
+function updateWaterLimitPosition(fullCapacity, waterLimit) {
+    var waterLimitElement = document.getElementById('water-limit');
+    var containerHeight = 280;
 
+    var percentage = (waterLimit / fullCapacity) * 100;
 
+    var newPosition = (containerHeight * ((percentage / 100)));
+
+    waterLimitElement.style.bottom = newPosition + 'px';
+}
+
+function toggleSpinAnimation() {
+    var settingImg = document.getElementById('setting');
+    var isSpinning = settingImg.style.animationPlayState === 'running';
+    
+    if (isSpinning) {
+        settingImg.style.animationPlayState = 'paused';
+        settingImg.classList.add('stop-spin');
+        document.getElementById('full-capacity').disabled = true;
+        document.getElementById('units').disabled = true;
+        document.querySelector('input[name="Limit"]').disabled = true;
+        document.getElementById('Manual').disabled = true;
+        document.getElementById('apply-button').disabled = true; 
+    } else {
+        settingImg.style.animationPlayState = 'running';
+        settingImg.classList.remove('stop-spin');
+        document.getElementById('full-capacity').disabled = false;
+        document.getElementById('units').disabled = false;
+        document.querySelector('input[name="Limit"]').disabled = false;
+        document.getElementById('Manual').disabled = false;
+        document.getElementById('apply-button').disabled = false; 
+    }
+}
 
 document.addEventListener("DOMContentLoaded", function() {
+    var settingImg = document.getElementById('setting');
     document.getElementById('apply-button').addEventListener('click', function() {
         handleApplyButtonClick();
-        updateRulerLines();
+    });
+    settingImg.addEventListener('click', function() {
+        toggleSpinAnimation();
     });
 });
