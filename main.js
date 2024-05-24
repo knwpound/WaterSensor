@@ -3,7 +3,7 @@ function updateControlPanel(currentWaterLevel, remainingCapacity, percentageUsed
         document.getElementById('current-flow-info').textContent = currentWaterLevel + " " + selectedUnit;
         document.getElementById('remaining-capacity-info').textContent = remainingCapacity + " " + selectedUnit;
         document.getElementById('percentage-used-info').textContent = percentageUsed + "%";
-        document.getElementById('safety-threshold-info').textContent = safetyThreshold + " " + selectedUnit;
+        document.getElementById('safety-threshold-info').textContent = safetyThreshold + "%";
         document.getElementById('dam-gate-status-info').textContent = damGateStatus;
         document.getElementById('control-mechanism-info').textContent = controlMechanism;
 }
@@ -29,25 +29,20 @@ function handleApplyButtonClick() {
         alert('Full Capacity must be greater than zero.');
     } else if (fullCapacity % 10 !== 0) {
         alert('Full Capacity must be a multiple of 10.');
-    } else if (waterLimit > fullCapacity) {
-        alert('Water limit cannot exceed full capacity.');
+    }else if(waterLimit>100){
+        alert('Water Limit Percentage must between 0-100.');
     } else {
         console.log('Full Capacity:', fullCapacity);
         console.log('Unit of Measurement:', unitMeasurement);
         console.log('Water Limit:', waterLimit);
         console.log('Manual or Auto:', manualAuto);
 
-        document.getElementById('full-capacity').disabled = true;
-        document.getElementById('units').disabled = true;
-        document.querySelector('input[name="Limit"]').disabled = true;
-        document.getElementById('Manual').disabled = true;
-        document.getElementById('apply-button').disabled = true; 
-
         updateRulerLines();
-        updateControlPanel(0,fullCapacity,100,waterLimit,"Closed",manualAuto,unitMeasurement);
-        updateWaterLimitPosition(fullCapacity,waterLimit);
+        updateControlPanel(0,fullCapacity,0,waterLimit,"Closed",manualAuto,unitMeasurement);
+        updateWaterLimitPosition(waterLimit);
 
         toggleSpinAnimation();
+        updateWaterLevel(0,fullCapacity);
     }
 }
 
@@ -65,13 +60,11 @@ function updateRulerLines() {
         }
     }
 }
-function updateWaterLimitPosition(fullCapacity, waterLimit) {
+function updateWaterLimitPosition(waterLimit) {
     var waterLimitElement = document.getElementById('water-limit');
     var containerHeight = 280;
 
-    var percentage = (waterLimit / fullCapacity) * 100;
-
-    var newPosition = (containerHeight * ((percentage / 100)));
+    var newPosition = (containerHeight * ((waterLimit / 100)));
 
     waterLimitElement.style.bottom = newPosition + 'px';
 }
@@ -80,7 +73,7 @@ function toggleSpinAnimation() {
     var settingImg = document.getElementById('setting');
     var isSpinning = settingImg.style.animationPlayState === 'running';
     
-    if (isSpinning) {
+    if (!isSpinning) {
         settingImg.style.animationPlayState = 'paused';
         settingImg.classList.add('stop-spin');
         document.getElementById('full-capacity').disabled = true;
@@ -99,10 +92,31 @@ function toggleSpinAnimation() {
     }
 }
 
+function updateWaterLevel(currentWaterLevel, fullCapacity) {
+    var waterContainer = document.querySelector('.waterContainer');
+    var minTop = -205;
+    var maxTop = -95;
+
+    // Calculate percentage of water filled
+    var percentageFilled = (currentWaterLevel / fullCapacity) * 100;
+    console.log('Percentage Filled:', percentageFilled);
+
+    // Map the percentage to the range of top values
+    var newTop = maxTop + ((maxTop - minTop) * (percentageFilled / 100));
+    console.log('Range of Top Values:', (maxTop - minTop));
+    console.log('New Top:', newTop);
+
+    // Update the top property of the pseudo-elements
+    waterContainer.style.setProperty('--water-top-before', newTop + '%');
+    waterContainer.style.setProperty('--water-top-after', (newTop - 2) + '%');
+}
+
+
 document.addEventListener("DOMContentLoaded", function() {
     var settingImg = document.getElementById('setting');
     document.getElementById('apply-button').addEventListener('click', function() {
         handleApplyButtonClick();
+        waterContainer.style.setProperty('--water-top-before', newTop + '%');
     });
     settingImg.addEventListener('click', function() {
         toggleSpinAnimation();

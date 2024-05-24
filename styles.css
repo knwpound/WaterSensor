@@ -122,10 +122,10 @@ button:active{
 .waterContainer::before {
     position: absolute;
     content: '';
-    width: 200%;
-    height: 200%;
+    width: 204%;
+    height: 204%;
     background-color: #ececec;
-    top: -140%; /* change water level */
+    top: -180%; /*max -205 min -95*/
     left: -50%;
     border-radius: 40%;
     animation: wave 12s infinite linear;
@@ -137,7 +137,7 @@ button:active{
     width: 204%;
     height: 204%;
     background-color: #ececec80;
-    top: -140%; /* change water level */
+    top: -182%; /* */
     left: -52%;
     border-radius: 40%;
     animation: wave 12s infinite linear;
