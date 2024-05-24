@@ -16,6 +16,7 @@
         <div id="bar"></div>
         <div id="setting-page">
             <img src="images/setting.png" alt="setting" id="setting">
+            <!--
                 <form class="feature" >
                     <label for="Capacity">Full Capacity:</label>
                     <input id="full-capacity" type="number" name="Capacity" min="0" placeholder="Enter Capacity">
@@ -28,10 +29,12 @@
                         <option value="m³">m&sup3;</option>
                     </select>
                 </form>
-                <form class="feature" >
+            -->
+                <form class="feature" style="margin-top: 20px; margin-left: 2px;" >
                     <label for="Limit">Water Limit:</label>
-                    <input type="number" name="Limit" min="0" max="100" step="1" style="margin-left: 12px;" placeholder="Enter percentage">
+                    <input type="number" name="Limit" min="0" max="100" step="1" style="margin-left: 8px;" placeholder="Enter percentage">
                 </form>
+                <!--
                 <form class="feature" >
                     <label for="Capacity">Manual or Auto:</label>
                     <select id="Manual" >
@@ -39,7 +42,8 @@
                         <option>Auto</option>
                     </select>
                 </form>
-                <button id="apply-button" style="margin-left: 210px;">Apply</button>
+            -->
+                <button id="apply-button" style="margin-left: 210px; margin-top: 20px;">Apply</button>
         </div>
         <div class="waterContainer">  
             <label id="current-flow">1400</label> 
@@ -83,10 +87,12 @@
                     <label for="current-flow" style="font-weight: 500;">Current Water Level:</label>
                     <label id="current-flow-info" class="information">1400 mm</label>
                 </form>
+                <!--
                 <form class="feature">
                     <label for="remaining" style="font-weight: 500;">Remaining Capacity:</label>
                     <label id="remaining-capacity-info" class="information">200 mm</label>
                 </form>
+                -->
                 <form class="feature">
                     <label for="percentage" style="font-weight: 500;">Percentage Used:</label>
                     <label id="percentage-used-info" class="information">80%</label>

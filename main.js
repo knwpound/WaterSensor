@@ -1,5 +1,5 @@
 function updateControlPanel(currentWaterLevel, remainingCapacity, percentageUsed, safetyThreshold, damGateStatus, controlMechanism, selectedUnit) {
-
+        
         document.getElementById('current-flow-info').textContent = currentWaterLevel + " " + selectedUnit;
         document.getElementById('remaining-capacity-info').textContent = remainingCapacity + " " + selectedUnit;
         document.getElementById('percentage-used-info').textContent = percentageUsed + "%";
@@ -106,6 +106,11 @@ function updateWaterLevel(currentWaterLevel, fullCapacity) {
     // Update the top property of the pseudo-elements
     waterContainer.style.setProperty('--water-top-before', newTop + '%');
     waterContainer.style.setProperty('--water-top-after', (newTop - 2) + '%');
+}
+
+function updateCurrentControlPanel(currentWaterLevel){
+    document.getElementById('current-flow').textContent=currentWaterLevel;
+
 }
 
 
