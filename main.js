@@ -41,7 +41,6 @@ function handleApplyButtonClick() {
         updateControlPanel(0,fullCapacity,0,waterLimit,"Closed",manualAuto,unitMeasurement);
         updateWaterLimitPosition(waterLimit);
 
-        toggleSpinAnimation();
         updateWaterLevel(0,fullCapacity);
     }
 }
@@ -73,7 +72,7 @@ function toggleSpinAnimation() {
     var settingImg = document.getElementById('setting');
     var isSpinning = settingImg.style.animationPlayState === 'running';
     
-    if (!isSpinning) {
+    if (isSpinning) {
         settingImg.style.animationPlayState = 'paused';
         settingImg.classList.add('stop-spin');
         document.getElementById('full-capacity').disabled = true;
@@ -94,16 +93,14 @@ function toggleSpinAnimation() {
 
 function updateWaterLevel(currentWaterLevel, fullCapacity) {
     var waterContainer = document.querySelector('.waterContainer');
-    var minTop = -205;
-    var maxTop = -95;
+    var minTop = -95;
 
     // Calculate percentage of water filled
     var percentageFilled = (currentWaterLevel / fullCapacity) * 100;
     console.log('Percentage Filled:', percentageFilled);
 
     // Map the percentage to the range of top values
-    var newTop = maxTop + ((maxTop - minTop) * (percentageFilled / 100));
-    console.log('Range of Top Values:', (maxTop - minTop));
+    var newTop = minTop - ((110) * (percentageFilled / 100));
     console.log('New Top:', newTop);
 
     // Update the top property of the pseudo-elements
@@ -116,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var settingImg = document.getElementById('setting');
     document.getElementById('apply-button').addEventListener('click', function() {
         handleApplyButtonClick();
-        waterContainer.style.setProperty('--water-top-before', newTop + '%');
+        toggleSpinAnimation();
     });
     settingImg.addEventListener('click', function() {
         toggleSpinAnimation();
